@@ -1,0 +1,32 @@
+.signup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .centered-rectangle {
+    width: 70%;
+    height: 700px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  }
+  
+  
+  .signup-image {
+    max-height: 100%;
+  }
+  .signup{
+    margin-left:280px;
+  }
+  .space{
+    height: 50px;
+  }
+  .caption {
+    margin-left: 120px;
+  }
