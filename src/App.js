@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignUp from "./views/SignUp"
 import SignIn from "./views/SignIn"
 import EtudiantsProgression from "./views/etudiantsProgression"
 import Home from "./views/Home"
@@ -8,9 +7,11 @@ import HomeGame from "./views/homeGame"
 import GestionEtudiants from "./views/GestionEtudiant"
 import GestionEnseignant from "./views/GestionEnseignant"
 import Messages from "./views/messages"
+import Request from "./views/request"
 
 
 import Layout from './layout';
+
 function App() {
   return (
     <div className="App">
@@ -19,43 +20,56 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<SignUp/>
-              }
+              element={<SignIn/>}
             />
-           <Route
+            <Route
               path="/Home"
               element={
                 <Layout>
-              <Home/>
-              </Layout>
+                  <Home/>
+                </Layout>
               }
             />
             <Route
               path="/GestionEtudiant"
               element={
                 <Layout>
-              <GestionEtudiants/>
-              </Layout>
+                  <GestionEtudiants/>
+                </Layout>
               }
             />
-             <Route
+            <Route
               path="/GestionEnseignant"
               element={
                 <Layout>
-              <GestionEnseignant/>
-              </Layout>
+                  <GestionEnseignant/>
+                </Layout>
               }
             />
             <Route
               path="/Messages"
               element={
                 <Layout>
-              <Messages/>
-              </Layout>
+                  <Messages/>
+                </Layout>
               }
             />
-
-            <Route path="/etudiantsProgression" element={<EtudiantsProgression />} />
+            <Route
+              path="/Request"
+              element={
+                <Layout>
+                  <Request/>
+                </Layout>
+              }
+            />
+            <Route
+              path="/etudiantsProgression"
+              element={
+                <Layout useSideNav2={true}>
+                  <EtudiantsProgression/>
+                </Layout>
+              }
+            />
             <Route path="/homeGame" element={<HomeGame />} />
             <Route path="/SignIn" element={<SignIn/>}/>
 

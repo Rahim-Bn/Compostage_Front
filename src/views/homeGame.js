@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Container, TextField, Button, Paper } from '@mui/material';
-import background from '../assets/bg.mp4'; // Import the background video
-import axios from 'axios'; // Import axios
+import background from '../assets/bg.mp4';
+import axios from 'axios';
 
 const NavBar = () => {
   return (
@@ -15,10 +15,13 @@ const NavBar = () => {
             <a href="#about" style={{ color: 'white', textDecoration: 'none' }}>About</a>
           </li>
           <li style={{ marginRight: '1rem' }}>
-            <a href="#contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</a>
+            <a href="#request-access" style={{ color: 'white', textDecoration: 'none' }}>Request Access</a>
+          </li>
+          <li style={{ marginRight: '1rem' }}>
+            <a href="#download" style={{ color: 'white', textDecoration: 'none' }}>Download</a>
           </li>
           <li>
-            <a href="#download" style={{ color: 'white', textDecoration: 'none' }}>Download</a>
+            <a href="#contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</a>
           </li>
         </ul>
       </nav>
@@ -27,29 +30,35 @@ const NavBar = () => {
 };
 
 const HomePage = () => {
-  const [name, setName] = useState('');
+  const [nom, setNom] = useState('');
+  const [prenom, setPrenom] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [requestSent, setRequestSent] = useState(false); // State to track if the request is sent
+  const [feedbackSent, setFeedbackSent] = useState(false); // State to track if the feedback is sent
 
-  const handleSubmit = async (e) => {
+  const handleRequestSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send POST request to backend with email and message data
-      const response = await axios.post('http://localhost:3000/feedbacks', { email, message });
-  
-      // Check if the request was successful
+      const response = await axios.post('http://localhost:3000/requests', { nom, prenom, email }); // Sending request with nom, prenom, and email
       if (response.status === 201) {
-        // Feedback submitted successfully
-        console.log('Feedback submitted successfully');
-        // Clear the form fields after submission
-        setEmail('');
-        setMessage('');
-      } else {
-        // Handle error if the request was not successful
-        console.error('Failed to submit feedback:', response.data.message);
+        console.log('Request submitted successfully');
+        setRequestSent(true); // Set requestSent state to true
       }
     } catch (error) {
-      // Handle error if the request failed
+      console.error('Error submitting request:', error);
+    }
+  };
+
+  const handleFeedbackSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/feedbacks', { email, message }); // Sending feedback with email and message
+      if (response.status === 201) {
+        console.log('Feedback submitted successfully');
+        setFeedbackSent(true); // Set feedbackSent state to true
+      }
+    } catch (error) {
       console.error('Error submitting feedback:', error);
     }
   };
@@ -90,7 +99,6 @@ const HomePage = () => {
 
       {/* Home Section */}
       <section id="home" style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-        {/* Welcome message */}
         <div 
           style={{
             position: 'absolute',
@@ -121,6 +129,69 @@ const HomePage = () => {
         </Container>
       </section>
 
+      {/* Request Access Section */}
+      <section id="request-access" style={{ position: 'relative', width: '100vw', height: '100vh', backgroundColor: 'transparent' }}>
+        <Container maxWidth="md" style={{ paddingTop: '10vh', position: 'relative', zIndex: 2 }}>
+          <Paper elevation={3} style={{ padding: '2rem', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+            <Typography variant="h2" align="center" gutterBottom>
+              Request Access
+            </Typography>
+            {requestSent ? (
+              <Typography variant="body1" align="center" gutterBottom>
+                Your request has been submitted successfully.
+              </Typography>
+            ) : (
+              <form onSubmit={handleRequestSubmit}>
+                <TextField
+                  label="Name"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  value={nom}
+                  onChange={(e) => setNom(e.target.value)}
+                />
+                <TextField
+                  label="Surname"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  value={prenom}
+                  onChange={(e) => setPrenom(e.target.value)}
+                />
+                <TextField
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Button variant="contained" color="primary" fullWidth type="submit">
+                  Submit Request
+                </Button>
+              </form>
+            )}
+          </Paper>
+        </Container>
+      </section>
+
+      {/* Download Section */}
+      <section id="download" style={{ position: 'relative', width: '100vw', height: '100vh', backgroundColor: 'transparent' }}>
+        <Container maxWidth="md" style={{ paddingTop: '10vh', position: 'relative', zIndex: 2 }}>
+          <Paper elevation={3} style={{ padding: '2rem', backgroundColor: 'rgba(0, 0, 0, 1)' }}>
+            <Typography variant="h2" align="center" gutterBottom style={{color: 'white'}}>
+              Download Our Game
+            </Typography>
+            <Typography variant="body1" align="center" gutterBottom style={{color: 'white'}}>
+              Click the link below to download the game:
+            </Typography>
+            <Button variant="contained" color="primary" fullWidth href="https://drive.google.com/file/d/1Ksag8X3RdxCQaFAK0nvnvrIH67S4d_FO/view?usp=sharing" target="_blank">
+              Download Game
+            </Button>
+          </Paper>
+        </Container>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" style={{ position: 'relative', width: '100vw', height: '100vh', backgroundColor: 'transparent' }}>
         <Container maxWidth="md" style={{ paddingTop: '10vh', position: 'relative', zIndex: 2 }}>
@@ -128,14 +199,22 @@ const HomePage = () => {
             <Typography variant="h2" align="center" gutterBottom>
               Contact Us
             </Typography>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleFeedbackSubmit}>
               <TextField
                 label="Name"
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={nom} // Use the same nom state for consistency
+                onChange={(e) => setNom(e.target.value)}
+              />
+              <TextField
+                label="Surname"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={prenom} // Use the same prenom state for consistency
+                onChange={(e) => setPrenom(e.target.value)}
               />
               <TextField
                 label="Email"
@@ -159,23 +238,6 @@ const HomePage = () => {
                 Send Message
               </Button>
             </form>
-          </Paper>
-        </Container>
-      </section>
-
-      {/* Download Section */}
-      <section id="download" style={{ position: 'relative', width: '100vw', height: '100vh', backgroundColor: 'transparent' }}>
-        <Container maxWidth="md" style={{ paddingTop: '10vh', position: 'relative', zIndex: 2 }}>
-          <Paper elevation={3} style={{ padding: '2rem', backgroundColor: 'rgba(0, 0, 0, 1)' }}>
-            <Typography variant="h2" align="center" gutterBottom style={{color: 'white'}}>
-              Download Our Game
-            </Typography>
-            <Typography variant="body1" align="center" gutterBottom style={{color: 'white'}}>
-              Click the link below to download the game:
-            </Typography>
-            <Button variant="contained" color="primary" fullWidth href="https://drive.google.com/file/d/1Ksag8X3RdxCQaFAK0nvnvrIH67S4d_FO/view?usp=sharing" target="_blank">
-              Download Game
-            </Button>
           </Paper>
         </Container>
       </section>
