@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-image: linear-gradient(to bottom right, #a3d977, #4caf50); /* Gradient from light green to darker green */
+    background-image: linear-gradient(to bottom left, #8bf58e, #6be66f); /* Gradient from light green to darker green */
   }
   
   .centered-rectangle {

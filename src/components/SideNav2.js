@@ -89,8 +89,8 @@ const SideNav = () => {
         <br />
       </Typography>
       
-      {renderButton("dashboard", DashboardIcon, "Dashboard", "/etudiantsProgression")}
-      {renderButton("logout", LogoutIcon, "Logout", "/SignIn")}
+      {renderButton("dashboard", DashboardIcon, "accueil", "/etudiantsProgression")}
+      {renderButton("logout", LogoutIcon, "Déconnecter", "/SignIn")}
     </Drawer>
   );
 };

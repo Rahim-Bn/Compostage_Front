@@ -35,7 +35,7 @@ const HomePage = () => {
         <div style={{ minHeight: '100vh', backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center', paddingLeft: '15%' }}>
             <Container maxWidth="lg">
                 <div>
-                <Typography variant="h2" align="center" gutterBottom style={{ padding: '30px', color: '#a3d977', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
+                <Typography variant="h1" align="center" gutterBottom style={{ padding: '30px', color: '#a3d977', fontWeight: 'bold', textShadow: '6px 12px 2px rgba(0, 0, 0, 3.5)' }}>
                     Bienvenue Admin <img src={heyGif} alt="Hey GIF" style={{ width: '13%' }} />
                 </Typography>   
                     <Grid container spacing={5} justifyContent="flex-end"> {/* Align content to the right */}

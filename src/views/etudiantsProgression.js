@@ -62,7 +62,7 @@ const EtudiantsProgression = () => {
     return (
         <div style={{ minHeight: '100vh', backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center', paddingLeft: '15%' }}>
             <div>
-                <Typography variant="h2" align="center" gutterBottom style={{ padding: '30px', color: '#a3d977', fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
+                <Typography variant="h2" align="center" gutterBottom style={{ padding: '30px', color: '#a3d977', fontWeight: 'bold', textShadow: '2px 10px 4px rgba(0, 0, 0, 4.5)' }}>
                     Progression des étudiants
                 </Typography>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', }}>
@@ -188,7 +188,7 @@ const EtudiantsProgression = () => {
                             </Table>
                         ) : (
                             <Typography variant="body1" gutterBottom>
-                                No governorat data available.
+                             Il n'a pas encore Jouer... 
                             </Typography>
                         )}
                     </div>

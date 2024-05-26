@@ -70,7 +70,7 @@ function App() {
                 </Layout>
               }
             />
-            <Route path="/homeGame" element={<HomeGame />} />
+            <Route path="/CompostageSimulation" element={<HomeGame />} />
             <Route path="/SignIn" element={<SignIn/>}/>
 
           </Routes>

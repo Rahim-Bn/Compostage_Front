@@ -3,6 +3,8 @@ import { TextField, Button, Grid, FormControl, RadioGroup, FormControlLabel, Rad
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import image from "../assets/login.gif";
+import "./SignUp.css";
+
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -39,7 +41,7 @@ function SignIn() {
       }
     } catch (error) {
       console.error("Error signing in:", error.message);
-      setError("Invalid email or password");
+      setError("email ou mot de passe incorrect!");
     }
   };
 
@@ -47,12 +49,12 @@ function SignIn() {
     <div className="signup-container">
       <div className="centered-rectangle">
         <form className="signup-form" onSubmit={handleSubmit}>
-          <h2 className="signup" style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#43a047", textShadow: "1px 1px 2px rgba(0,0,0,1.5)", letterSpacing: "1px", textDecoration: "none", marginLeft: 310 }}>
-            Sign In
+          <h2 className="signup" style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#43a047", textShadow: "1px 1px 2px rgba(0,0,0,1.5)", letterSpacing: "1px", textDecoration: "none", marginLeft: 0 }}>
+            Se connecter
           </h2>
           <br />
-          <span className="caption">
-            Sign in and stay ahead. Take your maintenance efforts to the next level.
+          <span className="caption" style={{marginLeft: 0 }}  >
+            Bienvenue dans notre plateforme.
           </span>
           <div className="space"></div>
           {/* Radio buttons for selecting role */}
@@ -64,8 +66,8 @@ function SignIn() {
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-              <FormControlLabel value="admin" control={<Radio />} label="Sign in as Admin" />
-              <FormControlLabel value="enseignant" control={<Radio />} label="Sign in as Enseignant" />
+              <FormControlLabel value="admin" control={<Radio />} label="En tant qu'Admin" />
+              <FormControlLabel value="enseignant" control={<Radio />} label="En tant qu'Enseignant" />
             </RadioGroup>
           </FormControl>
           <Grid container spacing={4}>
@@ -82,7 +84,7 @@ function SignIn() {
             </Grid>
             <Grid item xs={10} style={{ marginLeft: 50 }}>
               <TextField
-                label="Password"
+                label="Mot de Passe"
                 fullWidth
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -101,7 +103,7 @@ function SignIn() {
                 type="submit"
                 style={{ backgroundColor: "#43a047", color: "#ffffff" }}
               >
-                Sign In
+                Se connecter
               </Button>
             </Grid>
           </Grid>

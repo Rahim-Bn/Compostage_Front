@@ -189,7 +189,7 @@ const GestionEtudiant = () => {
         </TableHead>
         <TableBody>
             {Array.isArray(filteredStudents) && filteredStudents.map((student, index) => (
-                <TableRow key={student._id} style={{ backgroundColor: '#a3d977' }}>
+                <TableRow key={student._id} style={{ backgroundColor: '#ffff' }}>
                     <TableCell style={{ borderRight: '2px solid black' ,fontWeight: 'bold', borderBottom: '2px solid black', textAlign: 'center'  }}>{index}</TableCell>
                     <TableCell style={{ borderRight: '2px solid black',fontWeight: 'bold', borderBottom: '2px solid black', textAlign: 'center'  }}>{student.nom}</TableCell>
                     <TableCell style={{ borderRight: '2px solid black',fontWeight: 'bold', borderBottom: '2px solid black', textAlign: 'center'  }}>{student.prenom}</TableCell>

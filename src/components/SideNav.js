@@ -93,10 +93,10 @@ const SideNav = ({ newDemands }) => {
         <br />
       </Typography>
       
-      {renderButton("dashboard", DashboardIcon, "Dashboard", "/home")}
+      {renderButton("dashboard", DashboardIcon, "accueil", "/home")}
       {renderButton("Messages", MailOutlineIcon, "messages", "/messages")}
       {renderButton("Demandes",ChecklistRtlIcon,"Demandes","/request")}
-      {renderButton("logout", LogoutIcon, "Logout", "/SignIn")}
+      {renderButton("logout", LogoutIcon, "Déconnecter", "/SignIn")}
     </Drawer>
   );
 };
